@@ -2,13 +2,13 @@ function $id (id) {
   return document.getElementById(id);
 }
 
-function AdsRemoved () {
+function AdBlockChecker () {
   this.AdsRemoved = false;
   this.id = "adBlockEnabled";
   return this;
 }
 
-AdsRemoved.prototype = {
+AdBlockChecker.prototype = {
   checkScripts: function () {
     if (typeof adsEnabled === "undefined") {
       this.AdsRemoved = true;
