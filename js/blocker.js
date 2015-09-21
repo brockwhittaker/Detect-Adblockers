@@ -49,6 +49,3 @@ AdsRemoved.prototype = {
     this.checkScripts().createiFrame().removeiFrame();
   }
 };
-
-var ads = new AdsRemoved();
-ads.run();
