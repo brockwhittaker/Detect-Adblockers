@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="js/ads.js" charset="utf-8"></script>
+    <script src="js/blocker.js" charset="utf-8"></script>
+  </body>
+</html>
+<script type="text/javascript">
+function adsDisabled () {
+  document.write("Ads are disabled in this browser.");
+}
+function adsEnabled () {
+  document.write("Ads are enabled in this browser.");
+}
+ads.ifAdsDisabled(adsDisabled);
+ads.ifAdsEnabled(adsEnabled);
+</script>
