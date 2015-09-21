@@ -5,6 +5,7 @@ function $id (id) {
 function AdBlockChecker () {
   this.AdsRemoved = false;
   this.id = "adBlockEnabled";
+  this.id_2 = "contentBlockEnabled";
   return this;
 }
 
@@ -25,16 +26,28 @@ AdBlockChecker.prototype = {
     document.body.appendChild(n);
     return this;
   },
-  removeiFrame: function () {
-    var n = $id(this.id), $this = this;
-    n.onload = function () {
-      if ($id($this.id).style.display == "none") {
+  removeElem: function (id) {
+    var n = $id(id), $this = this;
+    if (typeof n == "undefined") {
+      n.onload = function () {
+        if (n.style.display == "none")
+          $this.AdsRemoved = true;
+        document.body.removeChild(n);
+      };
+    } else {
+      if (n.style.display == "none" || n.style.visibility == "hidden")
         $this.AdsRemoved = true;
-      } else {
-        document.body.removeChild($id($this.id));
-      }
-      delete $this.id;
-    };
+      document.body.removeChild(n);
+    }
+    return this;
+  },
+  testContentBlocker: function () {
+    var n = document.createElement('a');
+    n.src = "https://engine.adzerk.net/r?e=example";
+    n.href = "https://engine.adzerk.net/r?e=example";
+    n.style.visibility = "hidden";
+    n.id = this.id_2;
+    document.body.appendChild(n);
     return this;
   },
   ifAdsDisabled: function (func) {
@@ -46,6 +59,6 @@ AdBlockChecker.prototype = {
       func();
   },
   run: function () {
-    this.checkScripts().createiFrame().removeiFrame();
+    this.checkScripts().createiFrame().removeElem(this.id).testContentBlocker().removeElem(this.id_2);
   }
 };

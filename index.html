@@ -3,19 +3,53 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style media="screen">
+    @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,500,700);
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
+      margin: 0;
+      background-color: #F8F8F8;
+      text-align: center;
+      color: #444
+    }
+
+    #content {
+      color: #F8F8F8;
+      margin-top: 44vh;
+      font-size: 24pt;
+      font-weight: 200;
+      display: inline-block;
+      padding: 20px;
+      border: 1px solid #F8F8F8
+    }
+    </style>
   </head>
   <body>
+    <div id="content"></div>
+    <div id="report"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/ads.js" charset="utf-8"></script>
     <script src="js/blocker.js" charset="utf-8"></script>
+    <script src="/assets/js/main.js" charset="utf-8"></script>
+    <script src="/assets/js/tracker.js" charset="utf-8"></script>
   </body>
 </html>
 <script type="text/javascript">
+var num = "";
 var ads = new AdBlockChecker();
 ads.run();
 ads.ifAdsDisabled(function () {
-  document.write("Ads are disabled in this browser.");
+  $id("content").innerHTML = "Ads are disabled in this browser. <span style='font-weight: 500'>:(</span>";
+  document.body.style.backgroundColor = "#A25656";
 });
 ads.ifAdsEnabled(function () {
-  document.write("Ads are enabled in this browser.");
+  $id("content").innerHTML = "Ads are enabled in this browser.  <span style='font-weight: 500'>:)</span>";
+  document.body.style.backgroundColor = "#57A66C";
 });
 </script>
