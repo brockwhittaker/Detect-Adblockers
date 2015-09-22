@@ -38,18 +38,18 @@
     <script src="js/blocker.js" charset="utf-8"></script>
     <script src="/assets/js/main.js" charset="utf-8"></script>
     <script src="/assets/js/tracker.js" charset="utf-8"></script>
+    <script type="text/javascript">
+	var num = "";
+	var ads = new AdBlockChecker();
+	ads.run();
+	ads.ifAdsDisabled(function () {
+	  $id("content").innerHTML = "Ads are disabled in this browser. <span style='font-weight: 500'>:(</span>";
+	  document.body.style.backgroundColor = "#A25656";
+	});
+	ads.ifAdsEnabled(function () {
+	  $id("content").innerHTML = "Ads are enabled in this browser.  <span style='font-weight: 500'>:)</span>";
+	  document.body.style.backgroundColor = "#57A66C";
+	});
+	</script>
   </body>
 </html>
-<script type="text/javascript">
-var num = "";
-var ads = new AdBlockChecker();
-ads.run();
-ads.ifAdsDisabled(function () {
-  $id("content").innerHTML = "Ads are disabled in this browser. <span style='font-weight: 500'>:(</span>";
-  document.body.style.backgroundColor = "#A25656";
-});
-ads.ifAdsEnabled(function () {
-  $id("content").innerHTML = "Ads are enabled in this browser.  <span style='font-weight: 500'>:)</span>";
-  document.body.style.backgroundColor = "#57A66C";
-});
-</script>
